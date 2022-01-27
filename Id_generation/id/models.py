@@ -22,7 +22,8 @@ class UserProfile(models.Model):
         dt = datetime.datetime.now().year
 
         count = 0
-        self.identification = str( self.first_name[0] + "100"+ str(dt) + str(self.Born_year)[4] + "-0"+ str(count) )
+        first = self.first_name[0].upper()
+        self.identification = str( first + "100"+ str(dt) + str(self.Born_year)[4] + "-0"+ str(count) )
         count +=1  
         return super().save(*args, **kwargs)
 
