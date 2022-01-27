@@ -12,8 +12,11 @@ def create(request, *args, **kwargs):
         if form.is_valid():
             form.save()
             messages.success(request, 'Data was successfully save....thank')
-            object = UserProfile.objects.all()[0] 
-            return render(request, 'index.html', {'form':form, 'object':object})
+            form = ProfileForm()
+            object = UserProfile.objects.all()
+            long = len(object)
+            id = object[long-1]
+            return render(request, 'index.html', {'form':form, 'object':id})
 
         else:
             form = ProfileForm(data=request.POST)
