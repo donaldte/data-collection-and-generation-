@@ -14,6 +14,10 @@
 
 {% endfor %}
 
+{% if object %}
+  <h3> your registration number is: {{ object.identification }}</h3>
+{% endif %}
+
     <form action="{% url 'create' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}

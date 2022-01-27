@@ -11,6 +11,10 @@ class UserProfile(models.Model):
     first_name  = models.CharField(max_length=200)
     last_name  = models.CharField(max_length=200)
     Born_year = models.DateField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    class meta: 
+        ordering = ['-date']
     
     def __str__(self):
         return self.first_name
