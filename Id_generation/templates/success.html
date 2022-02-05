@@ -9,13 +9,15 @@
 <body>
     
 <h1>Welcome </h1>
+<div>
+    <p>If you want to find and existing NUI click below</p>
+    <button><a href="{% url 'search' %}">Search</a></button>
 
-{% if nui %}
-<em>IF You have your NUI</em><Button><a href="">NUI</a></Button>
-{% else %}
-<em>IF You don't have your NUI</em><Button><a href="{% url 'create' %}">NUI</a></Button>
+</div>
 
-
-{% endif %}
+<div>
+    <p>If you want to register a new user click below</p>
+    <button><a href="{% url 'create' %}">Create</a></button>
+</div>
 </body>
 </html>

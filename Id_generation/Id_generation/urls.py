@@ -22,7 +22,8 @@ urlpatterns = [
     path('', views.user_login, name='login'),
     path('register', views.register, name="register"),
     path('success', views.success, name="success"),
-    path('create', views.create, name="create" )
+    path('search', views.search, name='search'),
+    path('create', views.Create.as_view(), name="create" )
 ]
 
 

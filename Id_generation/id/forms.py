@@ -20,7 +20,7 @@ class UserForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('Born_year',)
+        exclude = ['identification', 'pwd', 'rpwd']
 
 
 

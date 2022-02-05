@@ -1,0 +1,995 @@
+<DOCTYPE html>
+
+	<head>
+		<title>Formulaire d'enregistrement</title>
+	</head>
+
+
+
+	<body>
+		{% for message in messages %}
+
+		<p>
+			<center style="color: chocolate;"> {{ message }} </center>
+		</p>
+
+		{% endfor %}
+
+		{% if object %}
+		<h3> your registration number is: {{ object.identification }}</h3>
+		{% endif %}
+		<h1> Formulaire d'enregistrement NIU</h1>
+		</hr>
+
+		<form method="POST">
+			{% csrf_token %}
+
+
+
+
+			<table border="1">
+				<tr>
+					<td> Noms </td>
+					<td><input type="text" placeholder="Entrez le noms..." name="name" {% if form.bound %}
+							value={{form.name.value}} {% endif %} required />
+						<span id="label16" title="champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+
+				</tr>
+
+				<tr>
+					<td nowrap="nowrap">
+						<span id="Prenom" class="bigLabelText">Prénom</span>
+					</td>
+					<td nowrap="nowrap">
+						<input name="username" type="text" maxlength="150" id="Prenom" {% if form.bound %}
+							value={{form.username.value}} {% endif %} class="bigTextBox"
+							style="background-color:White;border-color:Peru;border-width:1px;border-style:Solid;width:197px;">
+					</td>
+				</tr>
+
+				<tr>
+					<td> Date de naissance</td>
+
+
+					<td>
+						<input type="date" name="date" {% if form.bound %} value={{form.date.value}} {% endif %}>
+					</td>
+				</tr>
+
+				<tr>
+					<td nowrap="nowrap">
+						<span id="LieuDenaissance" class="bigLabelText">Lieu de naissance</span>
+					</td>
+					<td nowrap="nowrap">
+						<input name="place" type="text" maxlength="50" {% if form.bound %} value={{form.place.value}} {%endif %} id="LieuDenaissance" class="bigTextBox"
+							style="background-color:White;border-color:Peru;border-width:1px;border-style:Solid;width:197px;"
+							required>
+						<span id="Label17" title="Champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+				<tr>
+					<td> Email </td>
+					<td><input type="email" placeholder="Entrez l'email..." name="email" {% if form.bound %}
+							value={{form.email.value}} {% endif %} required />
+						<span id="label16" title="champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+				<tr>
+					<td> Mot de pass </td>
+					<td><input type="password" placeholder="Entrez le mot de pass..." {% if form.bound %}
+							value={{form.pwd.value}} {% endif %} required onchange="form.repwd.pattern=this.value"
+							name="pwd" />
+						<span id="label16" title="champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+				<tr>
+					<td> Re-ecrire le mot de pass </td>
+					<td><input type="password" placeholder="Confirmez le mot de pass..." name="repwd" pattern=""
+							required />
+						<span id="label16" title="champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+				<tr>
+					<td> Etat Civil </td>
+					<td>
+						<select name="status" {% if form.bound %} value={{form.status.value}} {% endif %}>
+							<option selected disabled="true"> ---</option>
+							<option> Marié(e) </option>
+							<option> Divorcé(e) </option>
+							<option> Célibataire </option>
+							<option> Veuf(VE) </option>
+						</select>
+						<span id="label16" title="champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+				<tr>
+					<td> Sexe </td>
+					<td><input type="radio" value="M" name="sex" /> Homme | <input type="radio" value="F" name="sex" {%if form.bound %} value={{form.sex.value}} {% endif %} /> Femme </td>
+				</tr>
+				<tr>
+					<td> Regime fiscal </td>
+					<td>
+						<select name="martial">
+							<option selected disabled="true"> ---</option>
+							<option> HORS REGIME D'IMPOSITION </option>
+							<option> LIBERATOIRE </option>
+							<option> SALARIE(Secteur public) </option>
+							<option> SALARIE(Secteur privé) </option>
+							<option> SIMPLIFIE </option>
+						</select>
+						<span id="label16" title="champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+				<tr>
+					<td> Activité déclarée </td>
+					<td><input type="text" placeholder="Entrez l'activité" name="activite" {% if form.bound %}
+							value={{form.activite.value}} {% endif %} required />
+						<span id="label16" title="champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+
+
+				<tr>
+					<td nowrap="nowrap">
+						<span id="NomDeLaMere" class="bigLabelText">Nom de la mère</span>
+					</td>
+					<td nowrap="nowrap">
+						<input name="NomDeLaMere" type="text" maxlength="100" id="NomDeLaMere" {% if form.bound %}
+							value={{form.NomDeLaMere.value}} {% endif %} class="bigTextBox"
+							style="background-color:White;border-color:Peru;border-width:1px;border-style:Solid;width:350px;">
+						<span id="NomDeLaMere" title="Champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+				<tr>
+					<td nowrap="nowrap">
+						<span id="PrenomDeLaMere" class="bigLabelText">Prénom de la mère</span>
+					</td>
+					<td nowrap="nowrap">
+						<input name="PrenomDeLaMere" type="text" maxlength="50" {% if form.bound %}
+							value={{form.PrenomDeLaMere.value}} {% endif %} id="PrenomDeLaMere" class="bigTextBox"
+							style="border-color:Peru;border-width:1px;border-style:Solid;width:197px;">
+					</td>
+				</tr>
+				<tr>
+					<td nowrap="nowrap">
+						<span id="NomDuPere" class="bigLabelText">Nom du père</span>
+					</td>
+					<td nowrap="nowrap">
+						<input name="NomDuPere" type="text" maxlength="100" {% if form.bound %}
+							value={{form.NomDuPere.value}} {% endif %} id="NomDuPere" class="bigTextBox"
+							style="border-color:Peru;border-width:1px;border-style:Solid;width:350px;">
+					</td>
+				</tr>
+				<tr>
+					<td nowrap="nowrap">
+						<span id="PrenomDuPere" class="bigLabelText">Prénom du père</span>
+					</td>
+					<td nowrap="nowrap">
+						<input name="PrenomDuPere" type="text" {% if form.bound %} value={{form.PrenomDuPere.value}} {%endif %} maxlength="50" id="PrenomDuPere" class="bigTextBox"
+							style="border-color:Peru;border-width:1px;border-style:Solid;width:197px;">
+					</td>
+				</tr>
+
+
+
+				<tr>
+					<td style="padding: 4px 0px 4px 0px" align="center" colspan="2" class="errorMessage">
+						<span id="piece d'identification"
+							style="color:Blue;font-size:18px;font-weight:bold;">PIECE/DOCUMENT D'IDENTIFICATION</span>
+					</td>
+				</tr>
+				<tr>
+					<td> Numéro du document </td>
+					<td><input type="text" placeholder="Entrez le Numéro du document" name="ndd" {% if form.bound %}
+							value={{form.ndd.value}} {% endif %} required />
+						<span id="label16" title="champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+
+				<tr>
+					<td> Pays </td>
+					<td>
+						<select id="pays" name="pays"
+							onchange="javascript:setTimeout('__doPostBack(\'ddlIDPAYSNATIONALITE2\',\'\')', 0)"
+							id="ddlIDPAYSNATIONALITE2"
+							style="background-color:White;font-size:18px;height:30px;width:200px;">
+							<option value="">----------------</option>
+							<option value="Afghanistan">Afghanistan</option>
+							<option value="Afrique du sud">Afrique du sud</option>
+							<option value="Albanie">Albanie</option>
+							<option value="Algérie">Algérie</option>
+							<option value="Allemagne">Allemagne</option>
+							<option value="Andorre">Andorre</option>
+							<option value="Angola">Angola</option>
+							<option value="Anguilla">Anguilla</option>
+							<option value="Antarctique">Antarctique</option>
+							<option value="Antigua et Barbuda">Antigua et Barbuda</option>
+							<option value="Antilles neerlandaises">Antilles néerlandaises</option>
+							<option value="Arabie saoudite">Arabie saoudite</option>
+							<option value="Argentine">Argentine</option>
+							<option value="Armenie">Arménie</option>
+							<option value="Aruba">Aruba</option>
+							<option value="Australie">Australie</option>
+							<option value="Autriche">Autriche</option>
+							<option value="Azerbaidjan">Azerbaïdjan</option>
+							<option value="Bahamas">Bahamas</option>
+							<option value="Bahrain">Bahrain</option>
+							<option value="Bangladesh">Bangladesh</option>
+							<option value="Barbade">Barbade</option>
+							<option value="Belgique">Belgique</option>
+							<option value="Belize">Belize</option>
+							<option value="Benin">Benin</option>
+							<option value="Bermudes">Bermudes (Les)</option>
+							<option value="Bhoutan">Bhoutan</option>
+							<option value="Bielorussie">Biélorussie</option>
+							<option value="Bolivie">Bolivie</option>
+							<option value="Bosnie-HerzEgovine">Bosnie-Herzégovine</option>
+							<option value="Botswana">Botswana</option>
+							<option value="Bouvet">Bouvet (Îles)</option>
+							<option value="Bresil">Brésil</option>
+							<option value="Brunei">Brunei</option>
+							<option value="Bulgarie">Bulgarie</option>
+							<option value="Burkina Faso">Burkina Faso</option>
+							<option value="Burundi">Burundi</option>
+							<option value="Cambodge">Cambodge</option>
+							<option selected="selected" value="Cameroun">Cameroun</option>
+							<option value="Canada">Canada</option>
+							<option value="Cap Vert">Cap Vert</option>
+							<option value="Cayman">Cayman (Îles)</option>
+							<option value="Chili">Chili</option>
+							<option value="Chine">Chine (Rép. pop.)</option>
+							<option value="Christmas">Christmas (Île)</option>
+							<option value="Chypre">Chypre</option>
+							<option value="Cocos">Cocos (Îles)</option>
+							<option value="Colombie">Colombie</option>
+							<option value="Comores">Comores</option>
+							<option value="Congo (Republique Democratique)">Congo (République Démocratique)</option>
+							<option value="5Congo (Republique du congo)">Congo (République du congo)</option>
+							<option value="Cook">Cook (Îles)</option>
+							<option value="Coree du Nord">Corée du Nord</option>
+							<option value="Coree du Sud">Corée du Sud</option>
+							<option value="Costa Rica">Costa Rica</option>
+							<option value="ci">Côte d'Ivoire</option>
+							<option value="hr">Croatie</option>
+							<option value="cu">Cuba</option>
+							<option value="dk">Danemark</option>
+							<option value="dj">Djibouti</option>
+							<option value="dm">Dominique</option>
+							<option value="eg">Égypte</option>
+							<option value="sv">El Salvador</option>
+							<option value="ae">Émirats arabes unis</option>
+							<option value="ec">Équateur</option>
+							<option value="er">Érythrée</option>
+							<option value="es">Espagne</option>
+							<option value="ee">Estonie</option>
+							<option value="us">Etats-Unis</option>
+							<option value="et">Ethiopie</option>
+							<option value="fk">Falkland (Île)</option>
+							<option value="fo">Féroé (Îles)</option>
+							<option value="fj">Fidji (République des)</option>
+							<option value="fi">Finlande</option>
+							<option value="fr">France</option>
+							<option value="ga">Gabon</option>
+							<option value="gm">Gambie</option>
+							<option value="gs">Géorgie et Sandwich du Sud (Îles)</option>
+							<option value="ge">Géorgie</option>
+							<option value="gh">Ghana</option>
+							<option value="gi">Gibraltar</option>
+							<option value="gr">Grèce</option>
+							<option value="gd">Grenade</option>
+							<option value="gl">Groenland</option>
+							<option value="gp">Guadeloupe</option>
+							<option value="gu">Guam</option>
+							<option value="gt">Guatemala</option>
+							<option value="gq">Guinée Equatoriale</option>
+							<option value="gn">Guinée</option>
+							<option value="gw">Guinée-Bissau</option>
+							<option value="gf">Guyane française</option>
+							<option value="gy">Guyane</option>
+							<option value="ht">Haïti</option>
+							<option value="hm">Heard et McDonald (Îles)</option>
+							<option value="hn">Honduras</option>
+							<option value="hk">Hong Kong</option>
+							<option value="hu">Hongrie</option>
+							<option value="um">Îles Mineures Éloignées des USA</option>
+							<option value="in">Inde</option>
+							<option value="id">Indonésie</option>
+							<option value="iq">Irak</option>
+							<option value="ir">Iran</option>
+							<option value="ie">Irlande</option>
+							<option value="is">Islande</option>
+							<option value="il">Israël</option>
+							<option value="it">Italie</option>
+							<option value="jm">Jamaïque</option>
+							<option value="jp">Japon</option>
+							<option value="jo">Jordanie</option>
+							<option value="kz">Kazakhstan</option>
+							<option value="ke">Kenya</option>
+							<option value="kg">Kirghizistan</option>
+							<option value="ki">Kiribati</option>
+							<option value="kw">Koweit</option>
+							<option value="la">Laos</option>
+							<option value="ls">Lesotho</option>
+							<option value="lv">Lettonie</option>
+							<option value="lb">Liban</option>
+							<option value="lr">Libéria</option>
+							<option value="ly">Libye</option>
+							<option value="li">Liechtenstein</option>
+							<option value="lt">Lithuanie</option>
+							<option value="lu">Luxembourg</option>
+							<option value="mo">Macau</option>
+							<option value="mk">Macédoine</option>
+							<option value="mg">Madagascar</option>
+							<option value="my">Malaisie</option>
+							<option value="mw">Malawi</option>
+							<option value="mv">Maldives (Îles)</option>
+							<option value="ml">Mali</option>
+							<option value="mt">Malte</option>
+							<option value="mp">Mariannes du Nord (Îles)</option>
+							<option value="ma">Maroc</option>
+							<option value="mh">Marshall (Îles)</option>
+							<option value="mq">Martinique</option>
+							<option value="mu">Maurice</option>
+							<option value="mr">Mauritanie</option>
+							<option value="yt">Mayotte</option>
+							<option value="mx">Mexique</option>
+							<option value="fm">Micronésie (États fédérés de)</option>
+							<option value="md">Moldavie</option>
+							<option value="mc">Monaco</option>
+							<option value="mn">Mongolie</option>
+							<option value="ms">Montserrat</option>
+							<option value="mz">Mozambique</option>
+							<option value="mm">Myanmar</option>
+							<option value="na">Namibie</option>
+							<option value="nr">Nauru</option>
+							<option value="np">Nepal</option>
+							<option value="ni">Nicaragua</option>
+							<option value="ne">Niger</option>
+							<option value="ng">Nigeria</option>
+							<option value="nu">Niue</option>
+							<option value="nf">Norfolk (Îles)</option>
+							<option value="no">Norvège</option>
+							<option value="nc">Nouvelle Calédonie</option>
+							<option value="nz">Nouvelle-Zélande</option>
+							<option value="om">Oman</option>
+							<option value="ug">Ouganda</option>
+							<option value="uz">Ouzbékistan</option>
+							<option value="pk">Pakistan</option>
+							<option value="pw">Palau</option>
+							<option value="pa">Panama</option>
+							<option value="pg">Papouasie-Nouvelle-Guinée</option>
+							<option value="py">Paraguay</option>
+							<option value="nl">Pays-Bas</option>
+							<option value="pe">Pérou</option>
+							<option value="ph">Philippines</option>
+							<option value="pn">Pitcairn (Îles)</option>
+							<option value="pl">Pologne</option>
+							<option value="pf">Polynésie française</option>
+							<option value="pr">Porto Rico</option>
+							<option value="pt">Portugal</option>
+							<option value="qa">Qatar</option>
+							<option value="cf">République centrafricaine</option>
+							<option value="do">République Dominicaine</option>
+							<option value="cz">République tchèque</option>
+							<option value="re">Réunion (La)</option>
+							<option value="ro">Roumanie</option>
+							<option value="uk">Royaume-Uni</option>
+							<option value="ru">Russie</option>
+							<option value="rw">Rwanda</option>
+							<option value="eh">Sahara Occidental</option>
+							<option value="pm">Saint Pierre et Miquelon</option>
+							<option value="vc">Saint Vincent et les Grenadines</option>
+							<option value="sh">Sainte Hélène</option>
+							<option value="lc">Sainte Lucie</option>
+							<option value="kn">Saint-Kitts et Nevis</option>
+							<option value="sm">Saint-Marin (Rép. de)</option>
+							<option value="ws">Samoa</option>
+							<option value="st">São Tomé et Príncipe (Rép.)</option>
+							<option value="sn">Sénégal</option>
+							<option value="sc">Seychelles</option>
+							<option value="sl">Sierra Leone</option>
+							<option value="sg">Singapour</option>
+							<option value="sk">Slovaquie</option>
+							<option value="si">Slovénie</option>
+							<option value="so">Somalie</option>
+							<option value="sd">Soudan</option>
+							<option value="lk">Sri Lanka</option>
+							<option value="se">Suède</option>
+							<option value="ch">Suisse</option>
+							<option value="sr">Suriname</option>
+							<option value="sj">Svalbard et Jan Mayen (Îles)</option>
+							<option value="sz">Swaziland</option>
+							<option value="sy">Syrie</option>
+							<option value="tj">Tadjikistan</option>
+							<option value="tw">Taiwan</option>
+							<option value="tz">Tanzanie</option>
+							<option value="td">Tchad</option>
+							<option value="io">Territoire Britan. de l'océan Indien</option>
+							<option value="tf">Territoires français du sud</option>
+							<option value="th">Thailande</option>
+							<option value="tp">Timor</option>
+							<option value="tg">Togo</option>
+							<option value="tk">Tokelau</option>
+							<option value="to">Tonga</option>
+							<option value="tt">Trinité et Tobago</option>
+							<option value="tn">Tunisie</option>
+							<option value="tm">Turkménistan</option>
+							<option value="tc">Turks et Caïques (Îles)</option>
+							<option value="tr">Turquie</option>
+							<option value="tv">Tuvalu</option>
+							<option value="ua">Ukraine</option>
+							<option value="uy">Uruguay</option>
+							<option value="vu">Vanuatu</option>
+							<option value="va">Vatican (Etat du)</option>
+							<option value="ve">Venezuela</option>
+							<option value="vi">Vierges (Îles)</option>
+							<option value="vg">Vierges britanniques (Îles)</option>
+							<option value="vn">Vietnam</option>
+							<option value="wf">Wallis et Futuna(Îles)</option>
+							<option value="ye">Yemen</option>
+							<option value="yu">Yougoslavie</option>
+							<option value="zr">Zaïre</option>
+							<option value="zm">Zambie</option>
+							<option value="zw">Zimbabwe</option>
+
+						</select>
+						<span id="label16" title="champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+
+				<tr>
+					<td nowrap="nowrap">
+						<span id="ville" class="bigLabelText">Ville</span>
+					</td>
+					<td nowrap="nowrap">
+						<select name="ville" onchange="javascript:setTimeout('__doPostBack(\'ville\',\'\')', 0)"
+							id="ville" style="background-color:White;font-size:18px;height:30px;width:200px;" required>
+							<option value="">----------------</option>
+							<option selected="selected" value="ABONG-BANG">ABONG-BANG</option>
+							<option value="AFANLOUM">AFANLOUM</option>
+							<option value="AKO">AKO</option>
+							<option value="AKOEMAN">AKOEMAN</option>
+							<option value="AKOM II">AKOM II</option>
+							<option value="AKONO">AKONO</option>
+							<option value="AKONOLINGA">AKONOLINGA</option>
+							<option value="AKWAYA">AKWAYA</option>
+							<option value="ALOU">ALOU</option>
+							<option value="AMBAM">AMBAM</option>
+							<option value="Andek">Andek</option>
+							<option value="ANGOSSAS">ANGOSSAS</option>
+							<option value="ATOK">ATOK</option>
+							<option value="AWAE">AWAE</option>
+							<option value="AYOS">AYOS</option>
+							<option value="BABADJOU">BABADJOU</option>
+							<option value="BABESSI">BABESSI</option>
+							<option value="BAFANG">BAFANG</option>
+							<option value="BAFIA">BAFIA</option>
+							<option value="BAFOUSSAM">BAFOUSSAM</option>
+							<option value="BAFUT">BAFUT</option>
+							<option value="BAGANG">BAGANG</option>
+							<option value="BAHAM">BAHAM</option>
+							<option value="BAKASSI">BAKASSI</option>
+							<option value="BAKOU">BAKOU</option>
+							<option value="BALI">BALI</option>
+							<option value="BALIKUMBAT">BALIKUMBAT</option>
+							<option value="BAMA">BAMA</option>
+							<option value="BAMENDA">BAMENDA</option>
+							<option value="BAMENDJOU">BAMENDJOU</option>
+							<option value="BAMOUNGOUM">BAMOUNGOUM</option>
+							<option value="BAMUSSO">BAMUSSO</option>
+							<option value="BANA">BANA</option>
+							<option value="BANDJA">BANDJA</option>
+							<option value="BANDJOUN">BANDJOUN</option>
+							<option value="BANGANGTE">BANGANGTE</option>
+							<option value="BANGEM">BANGEM</option>
+							<option value="BANGOU">BANGOU</option>
+							<option value="BANGOURAIN">BANGOURAIN</option>
+							<option value="BANKA">BANKA</option>
+							<option value="BANKIM">BANKIM</option>
+							<option value="BANWA">BANWA</option>
+							<option value="BANYO">BANYO</option>
+							<option value="BARE-BAKEM">BARE-BAKEM</option>
+							<option value="BARNDAKE">BARNDAKE</option>
+							<option value="BASHEO">BASHEO</option>
+							<option value="BASSAMBA">BASSAMBA</option>
+							<option value="BATCHAM">BATCHAM</option>
+							<option value="BATCHENGA">BATCHENGA</option>
+							<option value="BATIBI">BATIBI</option>
+							<option value="BATIBO">BATIBO</option>
+							<option value="BATIE">BATIE</option>
+							<option value="BATOURI">BATOURI</option>
+							<option value="BAYANGAM">BAYANGAM</option>
+							<option value="BAZOU">BAZOU</option>
+							<option value="BEBESSI">BEBESSI</option>
+							<option value="BEKA">BEKA</option>
+							<option value="BELABO">BELABO</option>
+							<option value="BELEL">BELEL</option>
+							<option value="BELO">BELO</option>
+							<option value="BENAKUMA">BENAKUMA</option>
+							<option value="BENGBIS">BENGBIS</option>
+							<option value="BERTOUA">BERTOUA</option>
+							<option value="BETARE OYA">BETARE OYA</option>
+							<option value="BIBEMI">BIBEMI</option>
+							<option value="BIBEY">BIBEY</option>
+							<option value="BIKOK">BIKOK</option>
+							<option value="BIPINDI">BIPINDI</option>
+							<option value="BITANG">BITANG</option>
+							<option value="BIWONG BANE">BIWONG BANE</option>
+							<option value="BIWONG-BULU">BIWONG-BULU</option>
+							<option value="BIYOUHA">BIYOUHA</option>
+							<option value="BLANGOUA">BLANGOUA</option>
+							<option value="BOGO">BOGO</option>
+							<option value="BOKITO">BOKITO</option>
+							<option value="BONALEA">BONALEA</option>
+							<option value="BONDJOCK">BONDJOCK</option>
+							<option value="BOT MAKAK">BOT MAKAK</option>
+							<option value="BOURRHA">BOURRHA</option>
+							<option value="BUEA">BUEA</option>
+							<option value="BUM">BUM</option>
+							<option value="CAMPO">CAMPO</option>
+							<option value="DARAK">DARAK</option>
+							<option value="DARGALA">DARGALA</option>
+							<option value="DATCHEKA">DATCHEKA</option>
+							<option value="DEMBO">DEMBO</option>
+							<option value="DEMDENG">DEMDENG</option>
+							<option value="71838aad-229d-4b94-bda8-b24367cc0b45">DEUK</option>
+							<option value="fce124f3-c268-44e4-99bd-767310c8df41">DIANG</option>
+							<option value="61cfa4b8-86ba-4a3d-a90f-ae2a6edbe84f">DIBAMBA</option>
+							<option value="ffacfc37-f0fb-4012-b3c6-fee622e10046">DIBANG</option>
+							<option value="2e969b7b-9a34-438b-8bdb-45edb0b03e40">DIBOMBARI</option>
+							<option value="c831f1b0-2f39-4d20-be62-d47bbe6ed70a">DIKOME-BALUE</option>
+							<option value="3eea6f04-70d2-44ee-aea3-38e0bfbd3549">DIMAKO</option>
+							<option value="abe50f18-57d0-43e9-b7a0-b9251098914a">DIR</option>
+							<option value="a2cc5940-954b-4722-9552-034b874da74c">DIZANGUE</option>
+							<option value="e40be742-fe3e-43f3-a84a-8d04b7901240">DJOHONG</option>
+							<option value="d7ddd9bd-7a66-4a41-b49f-b0662ecedf44">DJOUM</option>
+							<option value="5463980e-dfb6-4ccd-b8a5-1258df5d3d44">DOUALA</option>
+							<option value="a41a1b7d-439f-4a56-95ac-41c4bc5cf270">DOUMAINTANG</option>
+							<option value="43aed1fb-bf9f-4d7d-b219-0b6a42723646">DOUME</option>
+							<option value="9d1e2bf8-0e2e-40d2-9667-03925f06634d">DSCHANG</option>
+							<option value="edd7031e-6334-404f-9649-0d4f366b814f">DZENG</option>
+							<option value="dbfe72fa-f80d-4268-9223-3c1a95612845">DZIGUILAO</option>
+							<option value="6221fbab-0230-4e4a-bb25-e978d49f4c42">EBEBDA</option>
+							<option value="d216a099-8035-4f14-a435-b32ee9ad4740">EBOLOWA</option>
+							<option value="ec05e50b-071b-4fe4-885b-cddea3d8cb11">EBONE</option>
+							<option value="d2ea121f-41a1-47f3-8ec5-0a252450614d">EDEA 1</option>
+							<option value="16e4386e-2b94-4138-a3d9-5ef312ea694e">EDEA 2</option>
+							<option value="10629f76-d21d-466b-8a10-60327439643f">EDZENDOUAN</option>
+							<option value="1fdee3ef-6bcf-4091-8324-cd00862fa940">EFOULAN</option>
+							<option value="9dc7c613-ac6b-4936-a832-634f207fea46">EKONDO-TITI</option>
+							<option value="92e69e3f-5192-40bc-9c2f-08b61515613a">ELAK OKU</option>
+							<option value="a45acf2e-3b27-417c-9057-0a36fad39a44">ELIG MFOMO</option>
+							<option value="f0a89a18-5a52-47bc-b87d-2ec4eea61248">ENDOM</option>
+							<option value="d00527c3-5df0-45eb-9563-86398300094a">ESEKA</option>
+							<option value="09532278-af37-4c4f-ab20-233525fc2147">ESSE</option>
+							<option value="0ec09db8-7c91-48be-a085-961e6bba394a">EVODOULA</option>
+							<option value="582af004-83ff-418f-9cbd-73c6cad25f41">EYUMOJOCK</option>
+							<option value="79594909-222c-49ce-a34f-ee5cf242a847">FIGUIL</option>
+							<option value="956e9c51-d3e0-478d-ab1f-298d0ae01ab3">FOKOUE</option>
+							<option value="184d5787-3bf0-493f-8af8-aae6ad7b0e31">FONFUKA</option>
+							<option value="a5a1f48f-2efe-48bd-a0ee-32c981b7674f">FONGO-TONGO</option>
+							<option value="5080c371-6f3f-4531-9db7-3cc9d119cc47">FONTEM</option>
+							<option value="3a73cc8e-827d-440a-a085-8b6a7d505147">FOTOKOL</option>
+							<option value="1efd91a2-cba0-40af-b3b0-5b0241274143">FOUMBAN</option>
+							<option value="14d71db5-d83e-4e26-9171-5ab071fcc0d9">FOUMBOT</option>
+							<option value="b672ffa5-4761-4c33-a29c-09ba3704ba4d">FOUMOT</option>
+							<option value="842cd2f5-4a0e-4ad5-bd18-8bed26cfb643">FUNDONG</option>
+							<option value="8b9271ed-27bb-40e4-83c6-b4b817c01447">FUNGOM</option>
+							<option value="97eebd46-c86e-4298-95f1-339a44914a40">FURU AWA</option>
+							<option value="0aac679f-4cc5-4094-b57d-423f3f43c763">GALIM TIGNERE</option>
+							<option value="632753d8-546c-4aae-9d4b-d8ac0ff21b4b">GALIM</option>
+							<option value="265c605e-02df-476a-b409-2e67e4380143">GARI-GOMBO</option>
+							<option value="3916c00a-f2c3-4d45-89dc-b315ee0b1a4c">GAROUA</option>
+							<option value="4ddd1b19-4cd1-4a80-9224-2ad5c1c20848">GAROUA-BOULAÏ</option>
+							<option value="31b14119-e3fa-439d-b26f-a78e086168cb">GASHIGA</option>
+							<option value="40e407c9-f154-46f0-98a4-ab411337dd4d">GAZAWA</option>
+							<option value="362fbabd-9dce-4380-bd2a-4f5dc3e9a64b">GOBO</option>
+							<option value="283f5cfb-237f-42e0-a610-27da85aff44d">GOULFEY</option>
+							<option value="b8abe345-ad12-4cd5-806c-7f6ca81a6b93">GRIBI</option>
+							<option value="f198597d-51f7-47d5-b9ca-6f8e82577440">GUELEBOCK</option>
+							<option value="4ee28560-4fd2-430d-a457-2306ac295af4">GUEME</option>
+							<option value="42002c34-dbfb-42aa-9d33-0dfad3c31548">GUERE</option>
+							<option value="44339084-e2c1-4195-a05d-b056354c5349">GUIDER</option>
+							<option value="18aeb5e1-2aea-4bb8-9eba-254f978a1f42">GUIDIGUIS</option>
+							<option value="faff0816-fb40-4992-a8bf-1e15945f7d43">HILE ALIFA</option>
+							<option value="168218c3-aaa0-43e9-a15e-44cbb704104b">HINA</option>
+							<option value="5aa9aa59-d68b-42c4-978e-d90605b3ef40">IDA-BATO</option>
+							<option value="ba11bf50-8c9c-4efd-a051-770927958143">ISANGUELE</option>
+							<option value="65880d1a-7ed0-4343-88fe-2863082a9b46">JAKIRI</option>
+							<option value="e8d60cb1-c319-477c-9272-40de86871b4e">KAELE</option>
+							<option value="bcfab327-81c3-4983-90af-810f4c8bcf4d">KAÏ-KAÏ</option>
+							<option value="968d50e3-03d2-474a-8ffc-969563bf9348">KALFOU</option>
+							<option value="62f4396b-672f-4bbe-8708-634e04894b44">KAR HAY</option>
+							<option value="6adc3735-7a1b-4623-8af5-ae41da177d4c">KEKEM</option>
+							<option value="843fd198-7528-4077-9cde-491220af3a46">KENTZOU</option>
+							<option value="d1ec5f25-0f15-4547-a7dd-95249b9bf64e">KETTE</option>
+							<option value="2891c149-dd4c-4292-812b-88adeec11844">KIIKI</option>
+							<option value="7d395cab-bda8-4253-80a4-ebcfb7996e4e">KOLOFATA</option>
+							<option value="41a0b16f-cf16-4f3f-908e-3fcf9c8a664a">KOMBO ABEDIMO</option>
+							<option value="6ed0c4de-eeba-4229-bc6b-b6be37ef3647">KOMBO ITINDI</option>
+							<option value="a928ecf8-54ca-434a-a82b-2b89cc711c39">KONTCHA</option>
+							<option value="6091af4e-afdd-4b83-a1de-e047cf8ecd4e">KON-YAMBETA</option>
+							<option value="083de853-632b-4075-8ace-7abe5b59e342">KONYE</option>
+							<option value="4419a1b4-bbc6-45ca-b7ab-79764d343847">KOUOPTAMO</option>
+							<option value="e7cf5efc-45a2-48c9-b5aa-629fe8e50d4b">KOUSSERI</option>
+							<option value="3e8dec29-b371-4335-ad9a-5577bec6454d">KOUTABA</option>
+							<option value="7656f6da-2b60-4acb-a241-6b146339db4a">KOZA</option>
+							<option value="069ceca8-7b51-4ded-84d3-faddb4d6e045">KRIBI</option>
+							<option value="fc880871-7c78-4bd4-b8af-c04a04e31e4a">KUMBA</option>
+							<option value="fd3a4698-6c5a-46c4-bc44-b290a604c94d">KUMBO</option>
+							<option value="36261b8d-6bde-4dfa-857a-42dcff324b4b">KYE-OSSI</option>
+							<option value="e6df254e-8ff4-486b-8abc-862fd7420b47">LAGDO</option>
+							<option value="cea347e5-2143-4072-ada8-d859c87c5643">LANGOUA</option>
+							<option value="5c72ab59-01ab-4232-bc14-7078b5c2c8c8">LEMBE YEZOUM</option>
+							<option value="030e0ccb-2f4c-4dd4-8b66-01714a1bdda8">LIBONGO</option>
+							<option value="9f4e34b5-f35b-4c0c-832d-6f3190893645">LIMBE</option>
+							<option value="6c172250-13cc-431e-b9ab-705154e873b0">LOBO</option>
+							<option value="af972546-6d60-4c2e-ba32-708f5876b85b">LOBO</option>
+							<option value="ae6dc4ae-2ab2-4353-a91c-1b7f60cf2b47">LOGONE BIRNI</option>
+							<option value="d79eb393-7fe4-4157-af9f-8a0850c3cf48">LOKOUNDJE</option>
+							<option value="c3a4b907-9ec7-421f-a4d7-21f8a0e65847">LOLODORF</option>
+							<option value="53d07da2-ed3c-4a7a-a52c-e206b4cfc242">LOMIE</option>
+							<option value="03e9acb0-d3f3-4d55-bfa8-1e0404829a43">LOUM</option>
+							<option value="b7375de3-e476-4627-8ae1-2104bb477f4a">MA'AN</option>
+							<option value="a97b76ce-869f-49c9-8ba2-03fb17b058b8">MADINGRING</option>
+							<option value="c63830c1-f191-4882-b8a1-129d8512a147">MAGA</option>
+							<option value="189a9e7d-068d-4ca7-b64c-ea78f7f3994c">MAGBA</option>
+							<option value="89f80ba1-b7c3-43da-bd50-795035d75647">MAKAK</option>
+							<option value="d2eb4cbd-51ee-472f-bbbd-cb3809764f4f">MAKARY</option>
+							<option value="ac8518f3-4255-48c2-b639-db62bb736045">MAKENENE</option>
+							<option value="47d433ed-013d-4636-9901-1471b7340645">MALANTOUEN</option>
+							<option value="e8e0de29-4e2b-4ffa-b249-3f9afaa2a848">MAMFE</option>
+							<option value="18b03ee8-e0ca-4e4c-854e-dbdc3b6fef46">MANDJOU</option>
+							<option value="0f2e3800-5eb0-480a-832c-46bf9b6a8447">MANJO</option>
+							<option value="6fc91d25-92a8-4fb3-b6b4-0069e855d741">MAROUA</option>
+							<option value="b757e2c1-4e51-44f4-a3c9-d24c05075642">MARTAP</option>
+							<option value="e410a0d8-cedb-48c5-b32b-38542f65564d">MASSANGAM</option>
+							<option value="25ad9721-4341-41a9-b61e-ed6839add358">MASSOCK SONGLOULOU</option>
+							<option value="9e11cbbc-e681-44c7-b7eb-08c23c25604e">MATOMB</option>
+							<option value="c0f609ef-6c0f-42ce-8037-8e4b0ce1de49">MAYO BALEO</option>
+							<option value="ae8cf988-1774-486f-9728-b1bafffdd69e">MAYO DARLE</option>
+							<option value="744915c0-d257-4349-bd2c-63c944bcf647">MAYO HOURNA</option>
+							<option value="bf7076b1-dee9-4a57-8b40-cd38a844784e">MAYO OULO</option>
+							<option value="1f77e7ff-170d-4d50-ae28-2a138ec8fd4f">MAYO-MOSKOTA</option>
+							<option value="d85d76eb-0d6e-4982-8336-36400c1fd14a">MBALMAYO</option>
+							<option value="d56ddcf3-ecc7-4024-a211-033321141544">MBANDJOCK</option>
+							<option value="8ea7a775-d8bc-4271-ba6d-8d1a858d2445">MBANG</option>
+							<option value="4717279b-46a7-4d2a-93dd-4c0795c4c24b">MBANGA</option>
+							<option value="dc5618ab-00bd-4e80-9103-a26ba00a344a">MBANGASSINA</option>
+							<option value="24871363-7ea7-49fd-9a88-ef5b27b6ec43">MBANKOMO</option>
+							<option value="49bb6c84-df5d-403d-acd5-812420e2dc4c">MBE</option>
+							<option value="4e90b5d6-cf4e-45ad-92e0-cee9021ca44d">MBENGWI</option>
+							<option value="a654e004-d004-4457-84ca-7cd7f6de3654">MBIAME</option>
+							<option value="9f763d41-9ac6-4f0f-9aed-87a25f9707c7">MBOMA</option>
+							<option value="12a2bce8-bdd9-43d0-a8fe-36f451aed145">MBONGUE</option>
+							<option value="5d9e399f-6c18-4ffb-b5de-d9e5b90e7a14">MBOUAM</option>
+							<option value="bec505eb-e2ab-4eaa-a3e6-1baae740784a">MBOUDA</option>
+							<option value="a8cdf462-ad48-4afe-981d-d930791fe947">MEIGANGA</option>
+							<option value="8bc86d25-9633-4f4c-839d-64a612745f4b">MELONG</option>
+							<option value="337a9b24-3850-4b77-9d57-a7024e105d4e">MENCHUM VALLEY</option>
+							<option value="483f2ae0-7be7-4a2e-8459-b4f12af5e1f9">MENGANG</option>
+							<option value="3b01c6cd-4459-412b-95bc-3302b3b10145">MENGONG</option>
+							<option value="7ebb51fe-9d3f-437d-bdb3-7cab205465f0">MENGUEME</option>
+							<option value="dcb55070-0ea3-4b05-8940-789d9118b090">MENJI</option>
+							<option value="e20dab46-668e-46f9-9a50-af94781d1a41">MENKA</option>
+							<option value="47297571-f01d-4708-b900-a391b95f5b47">MERI</option>
+							<option value="d9aa6858-f0d1-4a71-9ef7-54c39eccb84e">MESSAMENA</option>
+							<option value="60cc94ba-21b6-4d4e-b646-03d361dca04d">MESSONDO</option>
+							<option value="cb8cde99-4e33-4435-b717-84638aa7364b">MEYO MESSI</option>
+							<option value="0cd31ec3-304c-4930-ac93-4a3d9159b44f">MEYOMESSALA</option>
+							<option value="c3f930d3-0017-46ca-8bb0-86501e826c43">MFOU</option>
+							<option value="303dd083-7915-42d1-abe5-2944fa375d4c">MINDIF</option>
+							<option value="33781636-8d78-4e1e-acf4-c5749d28f443">MINDOUROU</option>
+							<option value="59619437-ffc9-423d-bef3-0c47b9729247">MINTA</option>
+							<option value="5ffbcc4e-9b0b-4320-82b2-d3b3f0e36c44">MINTOM</option>
+							<option value="d72d32c5-5676-4732-8a50-f134786a1e48">MISAJE</option>
+							<option value="e35f69f8-e96d-4c5f-b12f-d3653f04ed41">MOGODE</option>
+							<option value="93924329-f774-4608-ab55-a6844b9c7843">MOKOLO</option>
+							<option value="f54b21eb-4b72-472e-877e-6221ee644b27">MOLOUNDOU</option>
+							<option value="c6b7e003-d139-49d8-9016-5c32535385cb">MOMBO</option>
+							<option value="43eea229-314e-4197-b9cc-15b124368b4a">MONATELE</option>
+							<option value="cbcae981-08f1-474c-afd2-9429a74ad745">MORA</option>
+							<option value="2f92ac29-ce04-4281-94e7-9d2aba55e844">MOUANKO</option>
+							<option value="34d8a6f1-7628-4a76-aa42-47402dc22f40">MOULOUNDOU</option>
+							<option value="677c0776-ed15-4451-a71d-2b95ebd7f049">MOULVOUDAYE</option>
+							<option value="4a68fbd1-1053-45ed-9dd3-5f9ff1548e49">MOUTOURWA</option>
+							<option value="3ee5d9ba-0b1d-46d9-a45d-ac9e6e59d1b6">MOZOGO</option>
+							<option value="a3fb3b0a-be12-4726-8ca2-2dbd31b17946">MUNDEMBA</option>
+							<option value="d2fa6d56-4846-482a-9035-de0be04bfb48">MUYUKA</option>
+							<option value="3087904c-d357-4a4b-866a-a8c6ff99a44f">MVANGAN</option>
+							<option value="3d0fd8cf-9cd6-46ec-a718-ab64d24ddb4e">MVENGUE</option>
+							<option value="d7ebca93-07f0-4515-aeb6-f5ec7b6a2a4d">NANGA-EBOKO</option>
+							<option value="d9c76e81-05aa-4ded-b786-b31b4e5a43e3">NDE</option>
+							<option value="9c80bab1-16e9-42f4-a764-80fa1d547848">NDELELE</option>
+							<option value="de2ef885-0936-440b-b804-ca55fab26b48">NDIKINIMIKI</option>
+							<option value="fe46e1b9-c641-426a-941e-0bfd8b1e1d3d">NDOBIAN</option>
+							<option value="aa4e5087-207f-4e7c-a70c-ff15d6ac8f41">NDOM</option>
+							<option value="9ffe9a68-3d3a-43f5-9388-36f848d74543">NDOP</option>
+							<option value="d3ca7a06-9d2a-45ce-b0d1-6395be326c2a">NDOUKOULA</option>
+							<option value="1ae479c2-5c45-456c-93a4-b0ba0df52b44">NDU</option>
+							<option value="b0386beb-a88b-4ee6-bd76-6fbe129d204d">NGAMBE TIKAR</option>
+							<option value="588e23d5-fd02-4741-a5e6-29bf0eb43d46">NGAMBE</option>
+							<option value="8cacc04e-d93b-4e9f-928e-f76a67373b45">NGANHA</option>
+							<option value="9a63b14b-d611-4258-af47-32a9ed13ab6c">NGAOUI</option>
+							<option value="9559e03a-44ab-4356-a9c7-4f5bf4abb841">NGAOUNDAL</option>
+							<option value="95c0f524-053c-4ae7-b2bc-7340a41af54f">NGAOUNDERE</option>
+							<option value="3343c3ee-b16f-46a4-9c7b-f22a4646244d">NGIE</option>
+							<option value="30fe8623-99b3-4434-acfc-a2a1e9f54d4e">NGOG-MAPUBI</option>
+							<option value="712bf5ee-1191-4927-a2b3-4cc5f1404540">NGOILA</option>
+							<option value="fe85c185-3c07-4eca-a743-1379d38b4f4f">NGOMEZAP</option>
+							<option value="44c864a7-c8e5-4f74-a864-919793d98c56">NGONG</option>
+							<option value="cdd0d9f7-1c6e-4824-98d9-9a4fafdfc542">NGORO</option>
+							<option value="2a56f718-2fda-447c-a04e-ff8ba6d50d45">NGOULEMAKONG</option>
+							<option value="595210cd-a60a-45bf-95df-4b7eea9ba64b">NGOUMOU</option>
+							<option value="8c432b14-609c-4fec-a964-0181f5b7a40c">NGOURA</option>
+							<option value="a1d2721f-0ba1-4de5-9fc9-55700e4a5bcb">NGOYLA</option>
+							<option value="2b04f082-eb36-43a2-96f4-3055c7ae7950">NGUELEBOK</option>
+							<option value="d0977ea7-f16f-4b3e-968e-8dbfed80ad49">NGUELEMEDOUKA</option>
+							<option value="acdd25c8-2e19-457b-8ccb-b629929475f2">NGUI BASSAL</option>
+							<option value="824590ed-6ad0-4b86-84ca-88185debae49">NGUTI</option>
+							<option value="5f509ad4-96dc-4ee7-8dd4-5a325d3cd84d">NGWEI</option>
+							<option value="52d85b78-b261-45c2-948a-7f14328f477a">NIETE</option>
+							<option value="c9687cd7-cf2a-4b77-b44b-aafd2c155e6d">NITOUKOU</option>
+							<option value="a759e7c0-bcb8-463b-8d26-80572d1b6846">NJIKWA</option>
+							<option value="182034c8-d7dd-48f5-b1c1-b92dbacc714d">NJIMON</option>
+							<option value="c1f11245-dc48-4d2b-b9ce-8f9208cea348">NJINIKOM</option>
+							<option value="5c6c699c-0e8b-45d5-bc34-165a01ef8d4e">NJOMBE</option>
+							<option value="07f273bf-3277-4472-856a-317d15dec84e">NKAMBE</option>
+							<option value="37fd7209-5b65-410b-ac1a-572c07316598">NKOLAFAMBA</option>
+							<option value="190e28d7-4e9f-49cb-b3fe-2a4bdf44b97b">NKOLMETET</option>
+							<option value="b6a1109c-1d1b-4b03-b82c-ff46c293c64f">NKONDJOCK</option>
+							<option value="69618d32-2d72-40d2-b5cb-f2d34042b019">NKONG ZEM</option>
+							<option value="9c42fa53-ff40-4aba-bda1-4aaa5d019b4b">NKONGSAMBA</option>
+							<option value="ba0180be-adf5-4fff-93da-612be7a5a19a">NKOR</option>
+							<option value="b85a6eb4-9eb8-4bf1-852f-70900588944c">NKOTENG</option>
+							<option value="544a758c-0855-494c-a872-4f42571da346">NKUM</option>
+							<option value="dd8a8dce-759f-445c-84e7-8f6c73e7f44e">NLONAKO</option>
+							<option value="777be71f-5da5-4fd4-9429-878f96e28841">NONI</option>
+							<option value="8c2460fb-f075-49da-899a-76478b8034c4">NSEM</option>
+							<option value="62a0b9fc-d871-4c09-9342-2507c8bf0a49">NTUI</option>
+							<option value="11c31946-4297-47ae-8589-49cf3d6d5b46">NWA</option>
+							<option value="bfaeebf5-b70d-41e8-a238-363a30d906ba">NYAKOKOMBO</option>
+							<option value="c92a5869-c856-48ee-8444-20ed11f22841">NYAMBAKA</option>
+							<option value="a39f10ff-288f-4fd0-92ae-9719cefb152c">NYANON</option>
+							<option value="217e4c9d-3eb3-4cc4-bd83-67da6c137042">OBALA</option>
+							<option value="db4098b2-a840-404e-96f6-c283a58e2d45">OKOLA</option>
+							<option value="4418433c-fe5c-4107-b407-b45b0f653e46">OKU</option>
+							<option value="cb40b851-4366-4625-b60c-50f69de6f743">OLAMZE</option>
+							<option value="27497b7b-bf97-49b8-a37b-23db93884236">OLANGUINA</option>
+							<option value="d6529421-976c-43e9-9e85-e79339256449">OMBESSA</option>
+							<option value="e0d48eea-52bd-438a-b815-cb147d770b24">OULI</option>
+							<option value="561244f1-0b76-4997-8bb2-4d8492c18a4d">OVENG</option>
+							<option value="79f7d3a5-2c85-4c33-ad72-165ada179643">PENJA</option>
+							<option value="45c6f2d8-6d44-4b86-a99d-5fa180dfd9f8">PENKA MICHEL</option>
+							<option value="2df2c1d4-32e1-415b-8b93-4ebd2c5e9448">PETTE</option>
+							<option value="6931aee6-a59d-4880-8287-f8f366f85840">PITOA</option>
+							<option value="dbfcaa89-5d07-40f4-84aa-e02dd4205f41">POLI</option>
+							<option value="1b809691-80d0-402a-bf2e-33a5c455af42">PORHI</option>
+							<option value="e9026dde-266a-44e6-b243-89e1fd80cc44">POUMA</option>
+							<option value="26b89618-1bf6-43f2-9d33-d497e7f60545">POUMOUGNE</option>
+							<option value="0f477209-c60c-40ac-bcdd-008ad70e1f45">REY BOUBA</option>
+							<option value="5ed989a1-8a41-4b8f-9de5-a8ecd700cc42">SA’A</option>
+							<option value="d661ec0e-2df4-480c-8470-dfca1e5981f5">SALAPOUMBE</option>
+							<option value="0db8baf3-ab37-4d8a-b9b1-9bb66c87534e">SANGMELIMA</option>
+							<option value="dc6027b6-c530-4a62-b329-03dd11d0a843">SANTA</option>
+							<option value="60f43929-9618-4fea-b925-fc1c870ef505">SANTCHOU</option>
+							<option value="e215c5c4-9a00-46ec-ac74-a89d98bcae4d">SOA</option>
+							<option value="804d7d90-8758-4c46-bcbb-15af751d07b1">SOKAMBO</option>
+							<option value="a8cd2b6d-2e32-45b6-986d-db00cb03f24f">SOMALOMO</option>
+							<option value="a4678ee9-447d-4c9e-b712-a3d35d6bea73">SOULEDE ROUA</option>
+							<option value="1c174c06-e8c2-4193-984e-bc28b1ca504d">TAI-BONG</option>
+							<option value="5307bdaa-aa58-495a-8da7-55cbe11b8945">TCHATIBALI</option>
+							<option value="1380e650-7b14-47d0-ab85-5fda154e6c46">TCHEBOA</option>
+							<option value="2e6701ed-d882-4fd9-b800-55a9a42efa4a">TCHOLIRE</option>
+							<option value="6f6fe64c-e093-47bc-b5b9-6d09a85e8940">TIBATI</option>
+							<option value="1a97b6d0-8534-48b6-abc6-6efde9de4b40">TIGNERE</option>
+							<option value="33ef05f0-6065-4d74-b1df-36579f107745">TIKO</option>
+							<option value="4f0f2760-0d3e-4ade-b3dd-855a59c7b245">TINTO</option>
+							<option value="a3d11d6e-4ef2-426e-9507-26c10620fe5d">TOKO</option>
+							<option value="b124d803-cd51-47cc-ab09-e7c36be98c43">TOKOMBERE</option>
+							<option value="a8edd7a8-daeb-461a-a7b5-93ecdc47254e">TOMBEL</option>
+							<option value="0af0b7ee-0a7a-46bc-b0ab-4f7e16601643">TOUBORO</option>
+							<option value="895bbf46-356c-4914-b59a-5acbf7451107">TOULOUM</option>
+							<option value="2c4af3ae-c2b8-421a-906b-f661115f3c0f">TOUROUA</option>
+							<option value="830ebbf7-6b8e-4cd2-bade-5dc376f39646">TUBAH</option>
+							<option value="4c63bd48-0239-4021-b8de-f5158289be44">VELE</option>
+							<option value="ba6a210a-da63-4112-9cfb-73668717e948">WABANE</option>
+							<option value="42ab89ed-c4f0-4d29-8729-e01e7b311942">WAZA</option>
+							<option value="e7b73f6d-c1f3-4fcf-a5e6-d3c03048d3ea">WEST COAST</option>
+							<option value="74a6384c-025d-40c0-8a2b-a50baaffe140">WIDIKUM BOFE</option>
+							<option value="28956d28-e1bf-4691-ab1e-50963d1a0744">WINA</option>
+							<option value="b04e7965-daba-4138-bd6c-f20912950644">WUM</option>
+							<option value="9ffc06d5-b8ea-4867-ad0a-97e23fa38541">YABASSI</option>
+							<option value="45617aea-6fb8-4579-b210-0f62979ec749">YADEME</option>
+							<option value="754ad1cc-7a34-45b6-ac51-7d6e1684a04f">YAGOUA</option>
+							<option value="6570fe29-e9e8-4780-bf9d-46fd67ec5d4e">YAOUNDE</option>
+							<option value="4321f0ae-2cc7-4630-a1e8-3dff56a86147">YINGUI</option>
+							<option value="b308d38e-aa68-4e6a-a29a-5410d3890e4b">YOKADOUMA</option>
+							<option value="36a61024-9318-45be-a436-9b56eb0f9145">YOKO</option>
+							<option value="bc9fe3f2-5bd4-4f65-9cdf-49a251623226">ZHOA</option>
+							<option value="8f8063ad-20da-489e-91fd-d2e984fdb610">ZINA</option>
+							<option value="db72786c-b1bb-4608-9323-fcaee72bee42">ZOETELE</option>
+
+						</select>
+
+						<span id="Label14" title="Champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+
+				<tr>
+					<td nowrap="nowrap">
+						<span id="lblIDCOMMUNE2" class="bigLabelText">Commune</span>
+					</td>
+					<td nowrap="nowrap">
+						<select name="ddlIDCOMMUNE2"
+							onchange="javascript:setTimeout('__doPostBack(\'ddlIDCOMMUNE2\',\'\')', 0)"
+							id="ddlIDCOMMUNE2" style="background-color:White;font-size:18px;height:30px;width:200px;">
+							<option selected="selected" value="">----------------</option>
+
+						</select>
+						<input name="txtCOMMUNE2" type="text" {% if form.bound %} value={{form.txtCOMMUNE2.value}} {%endif %} maxlength="50" id="txtCOMMUNE2"
+							title="<< À renseigner uniquement si absent de la liste de gauche" class="bigTextBox"
+							style="background-color:White;border-color:Peru;border-width:1px;border-style:Solid;width:200px;">
+						<span id="lblIDCOMMUNE3" title="Champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+
+
+
+
+				<tr>
+					<td> Quartier </td>
+					<td><input type="text" placeholder="Entrez le quartier" name="quartier" {% if form.bound %}
+							value={{form.quatier.value}} {% endif %} required />
+						<span id="label16" title="champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+				<tr>
+					<td> Tel </td>
+					<td><input type="tel" placeholder="Entrez le numero de telephone" name="tel" {% if form.bound %}
+							value={{form.tel.value}} {% endif %} required />
+						<span id="label16" title="champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+
+				<tr>
+					<td nowrap="nowrap">
+						<span id="Lieu-dit" class="Lieu-dit">Lieu-dit</span>
+					</td>
+					<td nowrap="nowrap">
+						<input name="Lieu_dit" type="text" maxlength="250" id="Lieu-dit" {% if form.bound %}
+							value={{form.Lieu_dit.value}} {% endif %} class="bigTextBox"
+							style="background-color:White;border-color:Peru;border-width:1px;border-style:Solid;width:350px;">
+						<span id="Label13" title="Champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+
+				<tr>
+					<td nowrap="nowrap">
+						<span id="Unite_de_gestion" class="bigLabelText">Unité de gestion</span>
+					</td>
+					<td nowrap="nowrap">
+						<select name="Unite_de_gestion" id="Unite_de_gestion"
+							style="background-color:White;font-size:18px;height:30px;width:200px;">
+							<option selected="selected" value="">----------------</option>
+							<option value="bed7a136-3ec1-4a2b-8187-84395d074007">CDI BAFOUSSAM</option>
+							<option value="97d7690b-b3c7-4a71-9cf3-1ef52ff9b867">CDI BAKASSI</option>
+							<option value="A1055E7B-B38A-4619-8F74-28E403D56A36">CDI BAMBOUTOS</option>
+							<option value="DBF7B2BF-9A95-49F4-A3E5-212FC8D84730">CDI BENOUE</option>
+							<option value="B2DAD0D6-3A32-4E3E-9AB4-257E37A16D20">CDI BOUMBA ET NGOKO</option>
+							<option value="75287FF2-2FAF-41F8-B279-E5D5E8BBBB9F">CDI BOYO</option>
+							<option value="F07559E1-F34A-44E3-A2C9-C2BF89528A5A">CDI BUEA</option>
+							<option value="E7382585-0452-4908-B9D0-7A06955DC981">CDI BUI</option>
+							<option value="0B9249F6-399F-4953-BDC9-3627C9113C7A">CDI DIAMARE</option>
+							<option value="C8C4EFB9-A1FF-4F31-A5A7-7F76EB9F8360">CDI DJA ET LOBO</option>
+							<option value="8E420607-BE75-45B8-AD0F-E2F067598B23">CDI DJEREM</option>
+							<option value="F7EB4619-1F93-477F-87A1-42F3F3D54F86">CDI DONGA MANTUNG</option>
+							<option value="0F283641-941E-4936-B034-DD1B7FE2CC63">CDI DOUALA 1</option>
+							<option value="93ED7F66-33B7-4404-A5FB-455D74441C11">CDI DOUALA 2</option>
+							<option value="4F823701-EC80-4E37-8613-3994B6DE8E0C">CDI DOUALA 3</option>
+							<option value="B94C9AD4-4B18-4CE5-877C-31F4BFC07F13">CDI DOUALA 4</option>
+							<option value="5786D48D-74CD-454D-824A-A10C2FCFB839">CDI DOUALA 5</option>
+							<option value="BC5BC162-D8E9-4BA5-B5AF-2159D86CCD7E">CDI DOUALA 6</option>
+							<option value="6791ADCD-B6C0-4BDC-A7FB-B1F911DD75A6">CDI FARO</option>
+							<option value="3695FBED-119D-4780-A350-338C33B56D0F">CDI FARO ET DEO</option>
+							<option value="26596267-8F6D-4547-99C4-6AA80C512D9E">CDI FOUMBOT</option>
+							<option value="37A70CA1-E56B-4E90-9FE5-62ADDC7909E9">CDI HAUT NKAM</option>
+							<option value="721255B3-8CA5-48D4-8032-66BBDADB719C">CDI HAUTE SANAGA</option>
+							<option value="0EDFACC7-40F6-4006-91C5-4A00DF9B70FA">CDI HAUT-NYONG</option>
+							<option value="34DF22F4-994F-4234-9FE4-AB01E6A9396B">CDI HAUTS PLATEAUX</option>
+							<option value="792EA22B-B195-4355-8506-524074CFDEB9">CDI KADEY</option>
+							<option value="060EB3DE-6C31-4534-941C-D4B0DE729BED">CDI KOUNGKHI</option>
+							<option value="80E4A6F5-7890-4EEA-80F2-6ABBA382F8A3">CDI KOUPE ET MANENGO</option>
+							<option value="0E88CA31-4862-496C-B758-E981EDF3A33E">CDI LEBIALEM</option>
+							<option value="5CCBF812-6AF4-455A-B900-D8D795686CB7">CDI LIMBE</option>
+							<option value="E4399085-E900-4D09-A784-E0DC32C953FB">CDI LOGONE CHARI</option>
+							<option value="8C520441-3946-46B1-B409-28515C730976">CDI LOM ET DJEREM </option>
+							<option value="B668E411-907F-4081-A11A-0C5AAA82DE1B">CDI MANYU</option>
+							<option value="6132CE71-088F-45F6-990D-F6E3F78A2408">CDI MAYO BANYO</option>
+							<option value="2CD443AD-27BB-4E2C-A0C2-9CB4F8FBBB20">CDI MAYO KANI</option>
+							<option value="31367F16-7A1F-47D8-8127-4DBE5F254D08">CDI MAYO LOUTI</option>
+							<option value="918F13C2-587D-4726-B756-C22565E21091">CDI MAYO-DANAY</option>
+							<option value="F2DD3124-B659-4F85-ABCE-58955678A156">CDI MAYO-REY</option>
+							<option value="CB4BA891-E4E4-4852-A7E8-0AE045E7B4F6">CDI MAYO-SAVA</option>
+							<option value="93ECAC60-D726-442F-8BA2-6B594415191A">CDI MAYO-TSANAGA</option>
+							<option value="F0D2D705-319A-4DF8-923D-696B80C6C607">CDI MBAM ET INOUBOU</option>
+							<option value="E7FDAD0D-2C2F-419B-B7C4-2157AA19D03E">CDI MBAM ET KIM</option>
+							<option value="60578141-7EE5-4880-9411-749A83AB258E">CDI MBANDJOCK</option>
+							<option value="93BE0BC2-2742-4FF0-8D26-2BD44E895D98">CDI MBANGA</option>
+							<option value="7FE01035-E27C-42EC-87AF-05D71EFB9580">CDI MBERE</option>
+							<option value="F40EC641-BD23-4281-B727-B69D1F931F38">CDI MEFOU ET AFAMBA</option>
+							<option value="21E55A02-C07D-451A-84F3-DB4325280EC0">CDI MEFOU ET AKONO</option>
+							<option value="A5FA2E1F-D10D-4562-9A88-4DEB88C57922">CDI MEME</option>
+							<option value="FAF57092-477D-4230-A63F-EC5841497AFD">CDI MENCHUM</option>
+							<option value="5EC0CC6D-B9ED-4428-A833-DDAB593CE6C1">CDI MENOUA</option>
+							<option value="75C0FC3A-3EDF-4668-9490-7EF1B8465727">CDI MEYOMESSALA</option>
+							<option value="22DE1CBF-9687-4DFD-8DE4-721B62FCFA5B">CDI MEZAM</option>
+							<option value="512A4F28-6BBD-481D-AEAC-CEF53D9197DD">CDI MOMO</option>
+							<option value="725909B4-ECC2-4FC6-9DBB-788E51CDE2DA">CDI MONATELE</option>
+							<option value="FC13CB33-612D-417E-A3E3-1CF8BD0203A4">CDI MOUNGO</option>
+							<option value="ED348554-4922-400E-89A5-A8530CB9027D">CDI MUYUKA</option>
+							<option value="EBE5AA90-DFC8-4013-B3FB-5E6D812FE466">CDI MVILA</option>
+							<option value="4D7FFEBC-15D4-4572-8FE0-86EE5546AD84">CDI NDE</option>
+							<option value="B9AD21D9-F762-4DE7-9A29-9DDA86753F62">CDI NDIAN</option>
+							<option value="83F87A1F-82EB-46F1-8C98-BE319FD64844">CDI NGOKETUNJIA </option>
+							<option value="55A8C45A-0D79-4C47-9B81-236745B2C355">CDI NKAM</option>
+							<option value="6D6EB8EB-BF0F-4FC3-AAD1-5AA05C7B1C6E">CDI NOUN</option>
+							<option value="22C5EF97-41F3-4394-916A-249175B1848F">CDI NYONG ET KELLE</option>
+							<option value="AE575BE5-73A8-4697-876B-6ED542C7F06D">CDI NYONG ET MFOUMOU</option>
+							<option value="B10730AC-E635-4D82-965B-7876368B6E00">CDI NYONG ET SO'O</option>
+							<option value="6AC9C9F9-BF80-42EB-96BF-027D70237646">CDI OBALA</option>
+							<option value="E49DDCFF-1E23-46EA-BD98-9FDA52B4677B">CDI OCEAN</option>
+							<option value="0D9B837A-2CDD-4AAB-A56E-FC6FF3E68920">CDI SA'A</option>
+							<option value="AC9265F2-BC97-4BA4-80B1-622C4BF6C6C8">CDI SANAGA MARITIME</option>
+							<option value="997435E3-D9E8-4491-A49E-9CC71FB565B8">CDI TIKO</option>
+							<option value="6C2A60B4-EE8F-4987-B200-2CAE8AFCBAF4">CDI VALLEE DU NTEM</option>
+							<option value="7059FD0B-5A62-4DFD-A7F8-8DA3D066E0DD">CDI VINA</option>
+							<option value="fb1c6e39-071c-469f-81e8-d8fa069436c1">CDI YAOUNDE 1</option>
+							<option value="3CAF7925-F024-44A5-A456-5BD85DC17A6D">CDI YAOUNDE 2</option>
+							<option value="1C5FB488-F114-4B29-AA7D-6A6D995BECDF">CDI YAOUNDE 3</option>
+							<option value="DC312ACC-25E7-4121-A750-7A4690776F6E">CDI YAOUNDE 4</option>
+							<option value="513DDE97-3A67-494B-9380-E97E80BC9B7E">CDI YAOUNDE 5</option>
+							<option value="8D0D736F-3380-4121-BFAF-146A1EB53913">CDI YAOUNDE 6</option>
+							<option value="80036603-1FD3-46C4-B2C1-B4DCDC68BCB5">CDI ZOETELE</option>
+							<option value="113ee3a3-fc90-4600-a65e-870096e561b3">CSI EPA CTD OM</option>
+							<option value="2D5DCA55-1DB4-4018-807E-6DBE77B2C9C6">CSIPLI MFOUNDI</option>
+							<option value="2BA5F4BC-7838-4506-9A18-45FA44349E80">CSIPLI WOURI</option>
+
+						</select>
+						<span id="lblIDUNITEGESTION3" title="Champ obligatoire"
+							style="color:Red;font-size:18px;font-weight:bold;">*</span>
+					</td>
+				</tr>
+
+
+
+
+			</table>
+			<hr />
+			<input type="submit" value="Ajouter a la Base de Données" />
+			{% if messages %}
+			{% for result in messages %}
+			<b style="color: green;">{(result)}</b>
+			{% endfor %}
+			{% endif %}
+		</form>
+	</body>
+
+	</html>

@@ -10,15 +10,36 @@ from random import randint
 
 class UserProfile(models.Model):
     identification = models.CharField(unique=True, max_length=1000)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    Born_year = models.DateField() # format 2222-06-01
-    date = models.DateTimeField(auto_now=True)
+    name = models.CharField(max_length=1000)
+    username = models.CharField(max_length=1000)
+    date = models.DateField()
+    place = models.CharField(max_length=1000)
+    email = models.EmailField()
+    pwd = models.CharField(max_length=1000)
+    status = models.CharField(max_length=1000)
+    sex = models.CharField(max_length=1000)
+    matrial = models.CharField(max_length=1000)
+    activite = models.CharField(max_length=1000)
+    NomDeLaMere = models.CharField(max_length=1000)
+    PrenomDeLaMere = models.CharField(max_length=1000)
+    NomDuLaPere = models.CharField(max_length=1000)
+    PrenomDuLaPere = models.CharField(max_length=1000)
+    pays = models.CharField(max_length=1000)
+    ville = models.CharField(max_length=1000)
+    ndd = models.CharField(max_length=1000)
+    ddlIDCOMMUNE2 = models.CharField(max_length=1000)
+    txtCOMMUNE2 = models.CharField(max_length=1000)
+    quatier = models.CharField(max_length=1000)
+    Lieu_dit = models.CharField(max_length=1000)
+    Unite_de_gestion = models.CharField(max_length=1000)
+    tel = models.CharField(max_length=1000)
+    date_added = models.DateTimeField(auto_now_add=True)
 
     class meta: 
-        ordering = ['-date']
+        ordering = ['-date_added']
     
     def __str__(self):
-        return self.user.first_name
+        return self.name
 
     def save(self, *args, **kwargs):
         """
@@ -26,9 +47,11 @@ class UserProfile(models.Model):
         """
         dt = datetime.datetime.now().year
         
-        count = randint(100, 500)
-        first = self.user.first_name[0].upper()
-        self.identification = str( first + "100"+ str(dt) + str(self.Born_year)[4] + "-0"+ str(count) )
+        count = randint(100, 999)
+        first = self.name[0].upper()
+        second = self.username[0].upper()
+        third = self.pays[0].upper()
+        self.identification = str( first + "100"+ second + third+ str(dt) + str(self.date)[4] + "-0"+ str(count) )
          
         return super().save(*args, **kwargs)
 
